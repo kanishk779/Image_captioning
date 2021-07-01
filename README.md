@@ -21,7 +21,14 @@ Only then it is possible to feed the data to the model. Finally the dataloader
 is created using the above dataset and collate function.
 
 ### Relevant words
+To extract the visual concepts from an image we have used KNN (K Nearest
+Neighbour) approach. We first pass the image through the **GoogleNet** model to
+extract an embedding. In this embedding space we find the 10-Nearest neighbour
+and take their captions. From all these captions we select few high frequency
+words. There are other complex ways to detect these visual concepts as well, for
+example building a multi-label classifier as in <href>https://arxiv.org/pdf/1312.4894.pdf </href>.
 
 ### Encoder CNN
+
 
 ### Decoder RNN
