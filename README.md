@@ -29,6 +29,23 @@ words. There are other complex ways to detect these visual concepts as well, for
 example building a multi-label classifier as in <href>https://arxiv.org/pdf/1312.4894.pdf </href>.
 
 ### Encoder CNN
-
+We used pretrained **GoogleNet** for extracting the embedding from a given
+image. The last two fully connected layers were not considered.
 
 ### Decoder RNN
+Glove embeddings of 300 dimension were used to convert the one hot vocabulary to
+dense representation. Utilising the concept of attention to focus on relevant
+information for generation of meaningful sentences was achieved. There were two
+types of attention, input model for attention and output model for attention.
+To generate the next input, scores are calculated for each word in the
+vocabulary by using the previous output. The input vector is constructed by
+averaging the previous output and weighted words in the vocabulary (weights are
+the scores calculated above).
+
+The output model calculates the score for each word in the vocabulary using the
+hidden vector produced by RNN. The average vector is calculated as in the case
+of input attention.
+In addition to the cross-entropy loss, we also add regularisation to the
+attention scores, so that they penalise excessive attention paid to any single
+attribute over the entire sentence and sparsity of the attention score at a
+given time.
